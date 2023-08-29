@@ -27,8 +27,8 @@ jobs:
           npm install -g fsh-sushi@latest
           mkdir -p build-output
           # java -Xmx4g -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{ github.repository }}
-          ./_updateCQFTooling.sh
-          ./_updatePublisher.sh
+          # ./_updateCQFTooling.sh
+          # ./_updatePublisher.sh
           ./_runcqf.sh
           cp -r ./output/* build-output/
           echo "::set-output name=build_output_path::build-output"  # Output artifact path
