@@ -24,7 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          npm install -g fsh-sushi
+          npm install -g fsh-sushi@3.3.2
           mkdir -p build-output
           java -Xmx4g -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{ github.repository }}
           cp -r ./output/* build-output/
