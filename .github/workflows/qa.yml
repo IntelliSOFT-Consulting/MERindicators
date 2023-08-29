@@ -10,21 +10,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: maven:latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build
+        # uses: docker://hl7fhir/ig-publisher-base:latest
+        # with:
+        #   # Run the publisher - don't run the batch script but run the line directly
+        #   args: java -Xmx4g -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{github.repository}}
         run: |
-          echo "Building the project"
-          ./_updatePublisher.sh
-          ./_updateCQFTooling.sh
-          ./_runcqf.sh
-          # Example: Copy build output to a directory called "build-output"
           mkdir -p build-output
-          # Replace the following line with the actual command to copy build output
-          cp -r ./output/* build-output/
+          docker run --rm -v $PWD:/workspace -w /workspace hl7fhir/ig-publisher-base:latest java -Xmx4g -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{ github.repository }}
+          # Copy build output to "build-output" directory (if applicable)
+          # Adjust the copy command according to your output structure
+          cp -r /path/to/build/output/* build-output/
+          echo "::set-output name=build_output_path::build-output"  # Output artifact path
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v2
@@ -42,7 +43,7 @@ jobs:
     steps:
 
       - name: Checkout code and artifacts
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifacts
         uses: actions/download-artifact@v2
