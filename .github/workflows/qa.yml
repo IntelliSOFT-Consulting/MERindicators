@@ -27,7 +27,7 @@ jobs:
           npm install -g fsh-sushi@latest
           mkdir -p build-output
           ./_runcqf.sh
-          pwd && ls -la
+          pwd && ls /__w/MERindicators/MERindicators/output
           cp -r /__w/MERindicators/MERindicators/output/*   build-output/
           # cp -r output/* build-output/
           echo "::set-output name=build_output_path::build-output"  # Output artifact path
