@@ -7,43 +7,33 @@ NC='\033[0m' # No Color
 # do this first, wait 2-3 min before running - GitHub Actions will ensure this is available.
 # docker run -d -p 8080:8080 alphora/cqf-ruler:latest
 
-## fyi: hapi fhir hosted demo doesn't support measure eval
-# export FHIR="https://blaze.life.uni-leipzig.de/fhir"
-# export FHIR="https://cloud.alphora.com/sandbox/r4/cqm/fhir"
 export FHIR="http://localhost:8080/fhir"
 # export FHIR="http://ryzen.local:8080/fhir"
 
 export HEADER="Content-Type: application/fhir+json"
-# export output="../../output"
-# export OUTPUT="@../../output"
-# export SCRIPTS="../test/scripts"
+export BUNDLES_DIR="./test/scripts/bundles"
+export output="$(pwd)/output"
 
-# function confirmation {
-#     printf '\nDo you wish to continue (y/n)? '
-#     read answer
-
-#     if [ "$answer" != "${answer#[Yy]}" ] ;then 
-#         echo ""
-#     else
-#         echo ""
-#         exit
-#     fi
-# }
 
 function Loader() {
-    cd ${output}
-    for FILE in $1*.json
+    for FILE in "$output/"$1*.json
     do 
-        printf "${FILE}"
+        # printf "${FILE}"
         local EYED=$(cat ${FILE}| jq -r .id)
         curl -s -X PUT -H "$HEADER" --data @${FILE} $FHIR/$1/${EYED} | jq .
 
     done
-    cd ${SCRIPTS}
 }
 
-# on some servers this isn't needed, but it is included here
-curl -X PUT -H "$HEADER" --data @Library-FHIR-ModelInfo.json $FHIR/Library/FHIR-ModelInfo | jq .
+# Check if the output directory exists
+if [ ! -d "${output}" ]; then
+    echo "Build output directory does not exist. Running build scripts first..."
+    ./_updatePublisher.sh
+    ./_updateCQFTooling.sh
+    ./_runcqf.sh
+else
+    echo "Build output directory already exists."
+fi
 
 Loader Device
 Loader CodeSystem
@@ -53,29 +43,46 @@ Loader Measure
 Loader Organization
 Loader Location
 
+# Iterate through JSON files in the folder
+for json_file in "$BUNDLES_DIR"/*.json; do
+    if [ -f "$json_file" ]; then
+        echo "Processing $json_file"        
+        # Perform the POST request using curl
+        # curl -X POST -H "Content-Type: application/json" --data-binary @"$json_file" -k "$FHIR" >/dev/null 2>&1
+        curl -X POST -H "Content-Type: application/json" --data-binary @"$json_file" -k "$FHIR"    
+        echo "Posted data from $json_file"
+    fi
+done
 
 
-curl_output=$(curl $FHIR'/Measure/MERTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2021-12-31')
+DAKTXCURR=$(curl $FHIR'/Measure/DAKTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-12-31')
+KEMRTXCURR=$(curl $FHIR'/Measure/KEMRTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-12-31')
 
 
-# Extract relevant values from the curl output
-numerator=$(echo "$curl_output" | jq -r '.numerator')
-denominator=$(echo "$curl_output" | jq -r '.denominator')
-TX_CURR=$(echo "$curl_output" | jq -r '.TX_CURR')
+
+echo "$DAKTXCURR" | jq .
+echo "$KEMRTXCURR" | jq .
+
+# # Extract relevant values from the curl output
+# numerator=$(echo "$curl_output" | jq -r '.numerator')
+# denominator=$(echo "$curl_output" | jq -r '.denominator')
+# TX_CURR=$(echo "$curl_output" | jq -r '.TX_CURR')
 
 
-# Create a JSON object
-json_output=$(cat <<EOF
-{
-  "numerator": $numerator,
-  "denominator": $denominator,
-  "TX_CURR": "$TX_CURR"
-}
-EOF
-)
+# # Create a JSON object
+# json_output=$(cat <<EOF
+# {
+#   "numerator": $numerator,
+#   "denominator": $denominator,
+#   "TX_CURR": "$TX_CURR"
+# }
+# EOF
+# )
 
 # Save the JSON object to a file
-echo "$json_output" > output.json
+# echo "$json_output"
+# echo "$json_output" > output.json
+
 
 
 # cat measurereports/MERTXCURR.json | jq '.group[] | .stratifier[] | .stratum'

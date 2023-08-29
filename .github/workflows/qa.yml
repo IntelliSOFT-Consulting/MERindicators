@@ -1,24 +1,58 @@
 name: QA Tests - Measure accuracy of CQL scripts in determining TX_CURR.
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build_test:
+  build:
+    runs-on: ubuntu-latest
+    container: maven:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          echo "Building the project"
+          ./_updatePublisher.sh
+          ./_updateCQFTooling.sh
+          ./_runcqf.sh
+          # Example: Copy build output to a directory called "build-output"
+          mkdir -p build-output
+          # Replace the following line with the actual command to copy build output
+          cp -r ./output/* build-output/
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-output
+          path: build-output
+
+  qa_test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
-      image: alphora/cqf-ruler:latest
+      image: intellisoftkenya/cqf-ruler:22-08-2023
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # - name: Checkout the repo 
-        # uses: actions/checkout@v3
+
+      - name: Checkout code and artifacts
+        uses: actions/checkout@v2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-output
+          path: build-output
+
+      - name: Checkout the repo
+        uses: actions/checkout@v3
+
       - name: Run QA script
         run: |
-          # ./test/scripts/_QA-TXCurr.sh
-          ls
+          ./test/scripts/_QA-TXCurr.sh

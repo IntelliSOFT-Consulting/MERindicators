@@ -25,8 +25,16 @@
       "display": "HIV disease clinical stage 4 without mention of tuberculosis or malaria"
     },
     {
+      "code": "1C62.Z",
+      "display": "Human immunodeficiency virus disease without mention of associated disease or condition, clinical stage unspecified"
+    },
+    {
       "code": "XM63K0",
       "display": "Anti-infective antiviral"
+    },
+    {
+      "code": "QA14",
+      "display": "Contact with health services for human immunodeficiency virus counselling"
     },
     {
       "code": "XM35P4",
@@ -115,5 +123,5 @@
   ],
   "experimental": false,
   "caseSensitive": false,
-  "count": 26
+  "count": 28
 }

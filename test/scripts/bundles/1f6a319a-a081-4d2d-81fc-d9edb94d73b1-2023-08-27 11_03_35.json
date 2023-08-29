@@ -1,0 +1,1166 @@
+{
+  "resourceType": "Bundle",
+  "id": "1f6a319a-a081-4d2d-81fc-d9edb94d73b1",
+  "entry": [ {
+    "resource": {
+      "resourceType": "Patient",
+      "id": "af7352a3-aef2-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:26:33.000+03:00"
+      },
+      "identifier": [ {
+        "id": "b02865da-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "official",
+        "type": {
+          "coding": [ {
+            "code": "dfacd928-0370-4315-99d7-6ec1c9f7ae76"
+          } ],
+          "text": "OpenMRS ID"
+        },
+        "system": "urn:oid:1.2.840.113619.2.1.3",
+        "value": "MGFFDR"
+      }, {
+        "id": "af74055c-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "usual",
+        "type": {
+          "coding": [ {
+            "code": "05ee9cf4-7242-4a17-b4d4-00f707265c8a"
+          } ],
+          "text": "Unique Patient Number"
+        },
+        "value": "1068700064"
+      } ],
+      "active": true,
+      "name": [ {
+        "id": "af739d93-aef2-11ea-8b98-7812f081b2f7",
+        "family": "DIANA",
+        "given": [ "DIANA", "DIANA" ]
+      } ],
+      "gender": "male",
+      "birthDate": "1975-01-03",
+      "deceasedBoolean": false,
+      "address": [ {
+        "id": "af73c6dd-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/address",
+          "extension": [ {
+            "url": "http://fhir.openmrs.org/ext/address#address1",
+            "valueString": "9 address1"
+          }, {
+            "url": "http://fhir.openmrs.org/ext/address#address2",
+            "valueString": "9 address2"
+          } ]
+        } ],
+        "use": "old"
+      } ]
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "1b7f5289-aef3-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:29:34.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Method of enrollment"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "160540",
+          "display": "Method of enrollment"
+        }, {
+          "system": "http://loinc.org",
+          "code": "45252-4",
+          "display": "Method of enrollment"
+        } ],
+        "text": "Method of enrollment"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/1b7ef7a3-aef3-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-12-23T00:00:00+03:00",
+      "issued": "2020-06-15T13:29:34.000+03:00",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "code": "160539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Voluntary counseling and testing program"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "160539",
+          "display": "Voluntary counseling and testing program"
+        } ],
+        "text": "Voluntary counseling and testing program"
+      }
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/1b7ef7a3-aef3-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "9641725a-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:40:10.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "1193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "CURRENT DRUGS USED"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "1193",
+          "display": "CURRENT DRUGS USED"
+        } ],
+        "text": "CURRENT DRUGS USED"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/96413c06-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-03-02T00:00:00+03:00",
+      "issued": "2020-06-15T13:40:10.000+03:00",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "code": "164505AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Lamivudine / Efavirenz / Tenofovir"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "164505",
+          "display": "Lamivudine / Efavirenz / Tenofovir"
+        } ],
+        "text": "Lamivudine / Efavirenz / Tenofovir"
+      }
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/96413c06-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "00958e32-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:35:59.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/0094f521-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-12-23T00:00:00+03:00",
+      "issued": "2020-06-15T13:35:59.000+03:00",
+      "valueDateTime": "2016-01-07T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/0094f521-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "018dd5e2-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:00.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/009e8eae-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-02-18T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:00.000+03:00",
+      "valueDateTime": "2016-03-03T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/009e8eae-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01951a0b-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/0194c0a6-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-03-02T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-04-02T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/0194c0a6-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "019c9fe7-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/019c4df2-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-03-17T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-04-17T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/019c4df2-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01a45ff9-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/01a40700-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-04-04T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-05-04T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01a40700-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01ad3042-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/01acec1a-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-04-18T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-05-18T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01acec1a-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01b4f495-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/01b4994c-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-05-10T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-06-10T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01b4994c-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01bc9804-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/01bc3d8e-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-07-13T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-08-13T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01bc3d8e-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01c5866f-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/01c525b4-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-08-10T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-09-14T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01c525b4-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01cd172d-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/af7352a3-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "DIANA DIANA DIANA (OpenMRS ID: MGFFDR)"
+      },
+      "encounter": {
+        "reference": "Encounter/01ccc84c-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-10-11T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-11-11T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01ccc84c-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Patient",
+      "id": "b0287e8e-aef2-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:26:34.000+03:00"
+      },
+      "identifier": [ {
+        "id": "b0354b99-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "official",
+        "type": {
+          "coding": [ {
+            "code": "dfacd928-0370-4315-99d7-6ec1c9f7ae76"
+          } ],
+          "text": "OpenMRS ID"
+        },
+        "system": "urn:oid:1.2.840.113619.2.1.3",
+        "value": "MGFFEN"
+      } ],
+      "active": true,
+      "name": [ {
+        "id": "b0288f72-aef2-11ea-8b98-7812f081b2f7",
+        "family": "NJOROGE KIARIE",
+        "given": [ "NJOROGE KIARIE", "NJOROGE KIARIE" ]
+      } ],
+      "gender": "unknown",
+      "birthDate": "1920-06-01",
+      "deceasedBoolean": false,
+      "address": [ {
+        "id": "b0289edf-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/address",
+          "extension": [ {
+            "url": "http://fhir.openmrs.org/ext/address#address1",
+            "valueString": "10 address1"
+          }, {
+            "url": "http://fhir.openmrs.org/ext/address#address2",
+            "valueString": "10 address2"
+          } ]
+        } ],
+        "use": "old"
+      } ]
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Patient/b0287e8e-aef2-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Patient",
+      "id": "b0357df0-aef2-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:26:34.000+03:00"
+      },
+      "identifier": [ {
+        "id": "b053d19c-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "official",
+        "type": {
+          "coding": [ {
+            "code": "dfacd928-0370-4315-99d7-6ec1c9f7ae76"
+          } ],
+          "text": "OpenMRS ID"
+        },
+        "system": "urn:oid:1.2.840.113619.2.1.3",
+        "value": "MGFFFL"
+      }, {
+        "id": "b035e4b2-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "usual",
+        "type": {
+          "coding": [ {
+            "code": "05ee9cf4-7242-4a17-b4d4-00f707265c8a"
+          } ],
+          "text": "Unique Patient Number"
+        },
+        "value": "1068700035"
+      } ],
+      "active": true,
+      "name": [ {
+        "id": "b0359c9e-aef2-11ea-8b98-7812f081b2f7",
+        "family": "NYOKABI",
+        "given": [ "NYOKABI", "NYOKABI" ]
+      } ],
+      "gender": "female",
+      "birthDate": "1984-06-15",
+      "deceasedBoolean": false,
+      "address": [ {
+        "id": "b035bba4-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/address",
+          "extension": [ {
+            "url": "http://fhir.openmrs.org/ext/address#address1",
+            "valueString": "11 address1"
+          }, {
+            "url": "http://fhir.openmrs.org/ext/address#address2",
+            "valueString": "11 address2"
+          } ]
+        } ],
+        "use": "old"
+      } ]
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Patient/b0357df0-aef2-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "1cbb88aa-aef3-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:29:37.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Method of enrollment"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "160540",
+          "display": "Method of enrollment"
+        }, {
+          "system": "http://loinc.org",
+          "code": "45252-4",
+          "display": "Method of enrollment"
+        } ],
+        "text": "Method of enrollment"
+      },
+      "subject": {
+        "reference": "Patient/b0357df0-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "NYOKABI NYOKABI NYOKABI (OpenMRS ID: MGFFFL)"
+      },
+      "encounter": {
+        "reference": "Encounter/1b8ce912-aef3-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-10-01T00:00:00+03:00",
+      "issued": "2020-06-15T13:29:37.000+03:00",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "code": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Outpatient department"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "160542",
+          "display": "Outpatient department"
+        }, {
+          "system": "http://snomed.info/sct",
+          "code": "33022008",
+          "display": "Outpatient department"
+        } ],
+        "text": "Outpatient department"
+      }
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/1b8ce912-aef3-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01d4c6f1-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/b0357df0-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "NYOKABI NYOKABI NYOKABI (OpenMRS ID: MGFFFL)"
+      },
+      "encounter": {
+        "reference": "Encounter/01d47063-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-10-01T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2015-10-06T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01d47063-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Patient",
+      "id": "b053e96a-aef2-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:26:35.000+03:00"
+      },
+      "identifier": [ {
+        "id": "b05e2949-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "official",
+        "type": {
+          "coding": [ {
+            "code": "dfacd928-0370-4315-99d7-6ec1c9f7ae76"
+          } ],
+          "text": "OpenMRS ID"
+        },
+        "system": "urn:oid:1.2.840.113619.2.1.3",
+        "value": "MGFFGJ"
+      } ],
+      "active": true,
+      "name": [ {
+        "id": "b053f9cd-aef2-11ea-8b98-7812f081b2f7",
+        "family": "MUGECI",
+        "given": [ "MUGECI", "MUGECI" ]
+      } ],
+      "gender": "unknown",
+      "birthDate": "1920-06-01",
+      "deceasedBoolean": false,
+      "address": [ {
+        "id": "b054085f-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/address",
+          "extension": [ {
+            "url": "http://fhir.openmrs.org/ext/address#address1",
+            "valueString": "12 address1"
+          }, {
+            "url": "http://fhir.openmrs.org/ext/address#address2",
+            "valueString": "12 address2"
+          } ]
+        } ],
+        "use": "old"
+      } ]
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Patient/b053e96a-aef2-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Patient",
+      "id": "b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:26:35.000+03:00"
+      },
+      "identifier": [ {
+        "id": "b069a86a-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "official",
+        "type": {
+          "coding": [ {
+            "code": "dfacd928-0370-4315-99d7-6ec1c9f7ae76"
+          } ],
+          "text": "OpenMRS ID"
+        },
+        "system": "urn:oid:1.2.840.113619.2.1.3",
+        "value": "MGFFHG"
+      }, {
+        "id": "b05eacf3-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/patient/identifier#location",
+          "valueReference": {
+            "reference": "Location/03832f1d-fe3c-451b-8490-99c4dcb71022",
+            "type": "Location",
+            "display": "Maragua Ridge Health Centre"
+          }
+        } ],
+        "use": "usual",
+        "type": {
+          "coding": [ {
+            "code": "05ee9cf4-7242-4a17-b4d4-00f707265c8a"
+          } ],
+          "text": "Unique Patient Number"
+        },
+        "value": "1068700059"
+      } ],
+      "active": true,
+      "name": [ {
+        "id": "b05e689f-aef2-11ea-8b98-7812f081b2f7",
+        "family": "WILSON",
+        "given": [ "WILSON", "WILSON" ]
+      } ],
+      "gender": "female",
+      "birthDate": "1990-03-09",
+      "deceasedBoolean": false,
+      "address": [ {
+        "id": "b05e8656-aef2-11ea-8b98-7812f081b2f7",
+        "extension": [ {
+          "url": "http://fhir.openmrs.org/ext/address",
+          "extension": [ {
+            "url": "http://fhir.openmrs.org/ext/address#address1",
+            "valueString": "13 address1"
+          }, {
+            "url": "http://fhir.openmrs.org/ext/address#address2",
+            "valueString": "13 address2"
+          } ]
+        } ],
+        "use": "old"
+      } ]
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "1f06600c-aef3-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:29:40.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Method of enrollment"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "160540",
+          "display": "Method of enrollment"
+        }, {
+          "system": "http://loinc.org",
+          "code": "45252-4",
+          "display": "Method of enrollment"
+        } ],
+        "text": "Method of enrollment"
+      },
+      "subject": {
+        "reference": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "WILSON WILSON WILSON (OpenMRS ID: MGFFHG)"
+      },
+      "encounter": {
+        "reference": "Encounter/1f064904-aef3-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-10-29T00:00:00+03:00",
+      "issued": "2020-06-15T13:29:40.000+03:00",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "code": "160539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Voluntary counseling and testing program"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "160539",
+          "display": "Voluntary counseling and testing program"
+        } ],
+        "text": "Voluntary counseling and testing program"
+      }
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/1f064904-aef3-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "96482fab-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:40:10.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "1193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "CURRENT DRUGS USED"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "1193",
+          "display": "CURRENT DRUGS USED"
+        } ],
+        "text": "CURRENT DRUGS USED"
+      },
+      "subject": {
+        "reference": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "WILSON WILSON WILSON (OpenMRS ID: MGFFHG)"
+      },
+      "encounter": {
+        "reference": "Encounter/9647f52b-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-10-29T00:00:00+03:00",
+      "issued": "2020-06-15T13:40:10.000+03:00",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "code": "164505AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Lamivudine / Efavirenz / Tenofovir"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "164505",
+          "display": "Lamivudine / Efavirenz / Tenofovir"
+        } ],
+        "text": "Lamivudine / Efavirenz / Tenofovir"
+      }
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/9647f52b-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01dc83bd-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "WILSON WILSON WILSON (OpenMRS ID: MGFFHG)"
+      },
+      "encounter": {
+        "reference": "Encounter/01dc2a9b-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-10-29T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2015-11-11T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01dc2a9b-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01e41970-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "WILSON WILSON WILSON (OpenMRS ID: MGFFHG)"
+      },
+      "encounter": {
+        "reference": "Encounter/01e3be9f-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-03-10T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-04-14T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01e3be9f-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01eb9c18-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "WILSON WILSON WILSON (OpenMRS ID: MGFFHG)"
+      },
+      "encounter": {
+        "reference": "Encounter/01eb4f26-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-04-05T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-05-11T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01eb4f26-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "01f4a327-aef4-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:36:01.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "RETURN VISIT DATE"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "5096",
+          "display": "RETURN VISIT DATE"
+        } ],
+        "text": "RETURN VISIT DATE"
+      },
+      "subject": {
+        "reference": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "WILSON WILSON WILSON (OpenMRS ID: MGFFHG)"
+      },
+      "encounter": {
+        "reference": "Encounter/01f44f41-aef4-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2016-07-05T00:00:00+03:00",
+      "issued": "2020-06-15T13:36:01.000+03:00",
+      "valueDateTime": "2016-08-05T00:00:00+03:00"
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/01f44f41-aef4-11ea-8b98-7812f081b2f7"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Observation",
+      "id": "346f7df7-aef3-11ea-8b98-7812f081b2f7",
+      "meta": {
+        "lastUpdated": "2020-06-15T13:30:16.000+03:00"
+      },
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "code": "161555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Reason for discontinuation of program"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "161555",
+          "display": "Reason for discontinuation of program"
+        } ],
+        "text": "Reason for discontinuation of program"
+      },
+      "subject": {
+        "reference": "Patient/b05e4d06-aef2-11ea-8b98-7812f081b2f7",
+        "type": "Patient",
+        "display": "WILSON WILSON WILSON (OpenMRS ID: MGFFHG)"
+      },
+      "encounter": {
+        "reference": "Encounter/346f6e37-aef3-11ea-8b98-7812f081b2f7",
+        "type": "Encounter"
+      },
+      "effectiveDateTime": "2015-10-22T00:00:00+03:00",
+      "issued": "2020-06-15T13:30:16.000+03:00",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "code": "159492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "display": "Transferred out"
+        }, {
+          "system": "https://openconceptlab.org/orgs/CIEL/sources/CIEL",
+          "code": "159492",
+          "display": "Transferred out"
+        } ],
+        "text": "Transferred out"
+      }
+    },
+    "request": {
+      "method": "PUT",
+      "url": "Observation/346f6e37-aef3-11ea-8b98-7812f081b2f7"
+    }
+  } ]
+}
