@@ -10,21 +10,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: hl7fhir/ig-publisher-base:latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Build
+
         # uses: docker://hl7fhir/ig-publisher-base:latest
         # with:
         #   # Run the publisher - don't run the batch script but run the line directly
         #   args: java -Xmx4g -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{github.repository}}
         run: |
           mkdir -p build-output
-          docker run --rm -v $PWD:/workspace -w /workspace hl7fhir/ig-publisher-base:latest java -Xmx4g -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{ github.repository }}
-          # Copy build output to "build-output" directory (if applicable)
-          # Adjust the copy command according to your output structure
-          cp -r /path/to/build/output/* build-output/
+          java -Xmx4g -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{ github.repository }}
+          cp -r ./output/* build-output/
           echo "::set-output name=build_output_path::build-output"  # Output artifact path
 
       - name: Archive build artifacts
@@ -41,7 +42,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
       - name: Checkout code and artifacts
         uses: actions/checkout@v3
 
