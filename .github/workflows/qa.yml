@@ -31,7 +31,8 @@ jobs:
           # ./_updatePublisher.sh
           ./_runcqf.sh
           ls -la output
-          cp -r output/* build-output/
+          cp -r /__w/MERindicators/MERindicators/output   build-output/
+          # cp -r output/* build-output/
           echo "::set-output name=build_output_path::build-output"  # Output artifact path
 
       - name: Archive build artifacts
@@ -41,6 +42,7 @@ jobs:
           path: build-output
 
   qa_test:
+    needs: build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
