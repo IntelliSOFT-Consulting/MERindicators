@@ -62,18 +62,6 @@ jobs:
           name: build-output
           path: output
 
-      - name: Retry connection
-        run: |
-            for _ in {1..100}; do
-              if curl -sSf http://localhost:8080; then
-                  echo "Connection successful."
-                  break
-              else
-                  echo "Failed to connect, retrying in 5 seconds..."
-                  sleep 5  # Wait for 5 seconds before retrying
-              fi
-            done
-
       - name: Run QA script
         run: |
           ./test/scripts/_QA-TXCurr.sh
