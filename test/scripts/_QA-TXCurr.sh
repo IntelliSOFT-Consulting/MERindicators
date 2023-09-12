@@ -15,7 +15,7 @@ export BUNDLES_DIR="./test/scripts/bundles"
 export output="$(pwd)/output"
         
 echo "Attempting to connect to Test FHIR Server, retrying in 5 seconds..."
-for _ in {1..1000}; do
+for _ in {1..100}; do
     if curl -sSf http://localhost:8080 > /dev/null 2>&1; then
         echo "FHIR Server Connection successful."
         break
