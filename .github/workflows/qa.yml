@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: intellisoftkenya/cqf-ruler:22-08-2023
+      options: --user root
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
