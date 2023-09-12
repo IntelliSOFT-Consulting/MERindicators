@@ -60,11 +60,12 @@ jobs:
       - name: Retry connection
         run: |
             for _ in {1..100}; do
-              curl http://localhost:8080 || true
-              if [ $? -eq 0 ]; then
-                break
+              if curl -sSf http://localhost:8080; then
+                  echo "Connection successful."
+                  break
               else
-                sleep 5  # Wait for 5 seconds before retrying
+                  echo "Failed to connect, retrying in 5 seconds..."
+                  sleep 5  # Wait for 5 seconds before retrying
               fi
             done
 
