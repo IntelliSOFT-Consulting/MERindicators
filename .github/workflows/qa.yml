@@ -60,7 +60,7 @@ jobs:
       - name: Retry connection
         run: |
             for _ in {1..100}; do
-              curl http://localhost:8080  # Remove -sSf flags
+              curl http://localhost:8080 || true
               if [ $? -eq 0 ]; then
                 break
               else
