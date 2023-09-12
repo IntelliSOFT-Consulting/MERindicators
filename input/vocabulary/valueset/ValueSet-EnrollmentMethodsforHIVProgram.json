@@ -1,31 +1,15 @@
 {
   "resourceType": "ValueSet",
   "status": "draft",
-  "name": "Enrollment Methods for HIV Program",
+  "name": "EnrollmentMethodsforHIVProgram",
   "id": "EnrollmentMethodsforHIVProgram",
-  "title": "Enrollment Methods in KenyaEMR HIV Program",
+  "title": "EnrollmentMethodsforHIVProgram",
   "description": "1",
   "url": "https://path-global-health.github.io/MERindicators/ValueSet/EnrollmentMethodsforHIVProgram",
   "version": "1",
   "meta": {
     "lastUpdated": "2023-07-20T15:51:47.328070Z"
   },
-  "identifier": [
-    {
-      "system": "https://api.staging.openconceptlab.org",
-      "value": "/orgs/Kenya_SMART_Guidelines/ValueSet/enrollment_methods/",
-      "type": {
-        "text": "Accession ID",
-        "coding": [
-          {
-            "code": "ACSN",
-            "system": "http://hl7.org/fhir/v2/0203",
-            "display": "Accession ID"
-          }
-        ]
-      }
-    }
-  ],
   "compose": {
     "include": [
       {

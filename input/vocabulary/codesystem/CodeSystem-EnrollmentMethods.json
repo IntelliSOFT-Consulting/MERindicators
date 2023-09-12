@@ -54,21 +54,5 @@
     "lastUpdated": "2023-07-20T15:56:38.013277Z"
   },
   "version": "1",
-  "identifier": [
-    {
-      "system": "https://api.staging.openconceptlab.org",
-      "value": "/orgs/Kenya_SMART_Guidelines/CodeSystem/enrollment_methods/",
-      "type": {
-        "text": "Accession ID",
-        "coding": [
-          {
-            "code": "ACSN",
-            "system": "http://hl7.org/fhir/v2/0203",
-            "display": "Accession ID"
-          }
-        ]
-      }
-    }
-  ],
   "count": 10
 }

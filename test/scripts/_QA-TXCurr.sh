@@ -7,7 +7,7 @@ NC='\033[0m' # No Color
 # do this first, wait 2-3 min before running - GitHub Actions will ensure this is available.
 # docker run -d -p 8080:8080 alphora/cqf-ruler:latest
 
-export FHIR="http://localhost:8080/fhir"
+export FHIR="http://localhost:8088/fhir"
 # export FHIR="http://ryzen.local:8080/fhir"
 
 export HEADER="Content-Type: application/fhir+json"
@@ -15,7 +15,7 @@ export BUNDLES_DIR="./test/scripts/bundles"
 export output="$(pwd)/output"
 
 for _ in {1..1000}; do
-    if curl -sSf http://localhost:8080; then
+    if curl -sSf http://localhost:8088; then
         echo "FHIR Server Connection successful."
         break
     else
@@ -62,8 +62,8 @@ for json_file in "$BUNDLES_DIR"/*.json; do
     fi
 done
 
-DAKTXCURR=$(curl $FHIR'/Measure/DAKTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-12-31')
-KEMRTXCURR=$(curl $FHIR'/Measure/KEMRTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-12-31')
+DAKTXCURR=$(curl $FHIR'/Measure/DAKTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-08-31')
+KEMRTXCURR=$(curl $FHIR'/Measure/KEMRTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-08-31')
 
 echo "$DAKTXCURR" | jq .
 echo "$KEMRTXCURR" | jq .

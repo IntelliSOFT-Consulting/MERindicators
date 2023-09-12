@@ -47,7 +47,7 @@ jobs:
     #   options: --user root
     services:
       cqf-ruler:
-        image: intellisoftkenya/cqf-ruler:22-08-2023
+        image: alphora/cqf-ruler:latest
         ports:
           - 8080:8080
 
