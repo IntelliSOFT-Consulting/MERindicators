@@ -85,6 +85,5 @@ echo "$KEMRTXCURR" | jq .
 
 
 
-# cat measurereports/MERTXCURR.json | jq '.group[] | .stratifier[] | .stratum'
 
 # cat measurereports/MERTXCURR.json | jq -r '.group[] | .stratifier[] | .stratum | (. | map(leaf_paths) | unique) as $cols | map (. as $row | ($cols | map(. as $col | $row | getpath($col)))) as $rows | ([($cols | map(. | tostring))] + $rows) | map(@csv) | .[]' > measurereports/MERTXCURR.csv

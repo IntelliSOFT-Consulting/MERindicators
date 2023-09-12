@@ -56,10 +56,7 @@ jobs:
         with:
           name: build-output
           path: output
-
-      - name: Checkout the repo
-        uses: actions/checkout@v3
-
+          
       - name: Run QA script
         run: |
           ./test/scripts/_QA-TXCurr.sh
