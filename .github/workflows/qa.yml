@@ -60,10 +60,11 @@ jobs:
       - name: Retry connection
         run: |
             for _ in {1..100}; do
-              if curl -s http://localhost:8080; then
+              if curl http://localhost:8080; then
                 break
+              else
+                sleep 5  # Wait for 5 seconds before retrying
               fi
-              sleep 5  # Wait for 5 seconds before retrying
             done
 
       - name: Run QA script
