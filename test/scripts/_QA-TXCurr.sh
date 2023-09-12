@@ -7,7 +7,7 @@ NC='\033[0m' # No Color
 # do this first, wait 2-3 min before running - GitHub Actions will ensure this is available.
 # docker run -d -p 8080:8080 alphora/cqf-ruler:latest
 
-export FHIR="http://localhost:8088/fhir"
+export FHIR="http://localhost:8080/fhir"
 # export FHIR="http://ryzen.local:8080/fhir"
 
 export HEADER="Content-Type: application/fhir+json"
