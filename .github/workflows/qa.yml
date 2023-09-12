@@ -46,8 +46,10 @@ jobs:
     #   image: intellisoftkenya/cqf-ruler:22-08-2023
     #   options: --user root
     services:
-      image: intellisoftkenya/cqf-ruler:22-08-2023
-      ports: "8080:8080"
+      cqf-ruler:
+        image: intellisoftkenya/cqf-ruler:22-08-2023
+        ports:
+          - 8080:8080
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
