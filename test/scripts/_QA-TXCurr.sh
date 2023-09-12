@@ -14,7 +14,7 @@ export HEADER="Content-Type: application/fhir+json"
 export BUNDLES_DIR="./test/scripts/bundles"
 export output="$(pwd)/output"
 
-for _ in {1..100}; do
+for _ in {1..1000}; do
     if curl -sSf http://localhost:8080; then
         echo "FHIR Server Connection successful."
         break
