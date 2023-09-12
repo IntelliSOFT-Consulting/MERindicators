@@ -11,12 +11,10 @@ include KenyaEMRStratifiers called Stratifiers
 
 
 // Provide a default interval or period-based tests will fail when evaluating CQL against test cases
-// Need DateTime eg @2014-01-25T not Date, eg not this: @2014-01-25
 // The $evaluate-measure operation's parameters 'periodStart' and 'periodEnd' override this in any case
-parameter "Measurement Period" Interval<DateTime> default Interval[@1990-01-01T, @2023-12-31T]
+parameter "Measurement Period" Interval<DateTime> default Interval[@1990-01-01T, @2023-06-30T]
 
 
-// Start with the patient and traverse their clinical resources
 context Patient
 
 
@@ -40,98 +38,79 @@ Exclude those who interrupted treatment for any reason, etc, etc. "Measure Popul
 */
 
 
-// Data elements
-
-/*
-Deceased patients are not in numerator.
-In FHIR, deceased[x] is a choice type, of either boolean or datetime.
-It also has a cardinality of 0..1. meaning that deceasedBoolean and deceasedDateTime cannot coexist.
-There can only be one deceased[x] element.
-If true is used, there's no way to know from that field when the patient died. DateTime is better for accuracy.
-*/
-
-
-// This expression allows deceasedBoolean which has no datetime.
-define "Deceased Boolean":
-  Patient.deceased is not null 
-  and (Patient.deceased is true or Patient.deceased on or before end of "Measurement Period")
-
-
-// This expression requires patients to have datetime on Patient.deceased (more accurate).
-define "Deceased DateTime Only":
-  Patient.deceased is not null 
-  and Patient.deceased on or before end of "Measurement Period"
-
+// Initial Population
+// Patients who have started an ART drugs program
 
 /*
 PLHIV are enrolled in an HIV program.
 On Observation resource: $CIEL#160540 "Method of enrollment"
-On Observation.value.coding: $CIEL#160542 "Outpatient department"
 Observation.status is not in example bundle, can't do 'Obs.status in {'final', 'amended', 'corrected'}'
-Note that the CQL is using the CIEL codes only, even if others are provided.
-From the CQL docs: we use the equivalent operator (~) rather than equality (=). 
-For codes, equivalence tests only that the code system and code are the same, but does not check the code system version.
+Using the CIEL codes only, even if others are provided.
+Use the equivalent operator (~) rather than equality (=) which checks the code system version.
 */
 
 
-// Todo: This requires a valueset
+
 define "PLHIV Observation":
   ["Observation": Cx."Method of enrollment"] Obs
-    // where Obs.value ~ Cx."Outpatient department"
-    // or Obs.value ~ Cx."Institutional entry point HIV treatment"
-    // and (Obs.effective.value during "Measurement Period" or Obs.effective before "Measurement Period")
-    where (Obs.effective.value during "Measurement Period" or Obs.effective before "Measurement Period")
+    where (Obs.effective before end of "Measurement Period")
 
 
-// 'exists' keyword evaluates result as boolean or null (unknown)
 define "PLHIV Boolean": exists "PLHIV Observation"
 
 
-// Initial Population: Patients who are not deceased and have started on ART drugs (participating in program).
-
 define "Initial Population": 
   "PLHIV Boolean"
-  and "Deceased DateTime Only" is null 
-    or "Deceased DateTime Only" is false
 
 
-
-// Patients started on ART drugs (participating in program)
-// who made a clinic visit during the reporting period (Q: Any type?)
-// Todo: just clinic visits associated with HIV, need a new VS/code for this
+/*
+Someone visits 1 July. 
+Given appt in 1 month - 1 August.
+Check that patient had visit by 24th August/by 30 days.
++ add 30 days.
+*/
 
 
 // "RETURN VISIT DATE"
+// Patients started on ART drugs (participating in program)
+// who made a clinic visit during the reporting period (Q: Any type? A: yes)
 
 // return visit during period
-// uses effectivedatetime
-// the other datetime fields are not used
 define "Return Visits During Period":
   ["Observation": Cx."RETURN VISIT DATE"] Obs
-  // where (Obs.effective.value during "Measurement Period" or Obs.effective.value after "Measurement Period")
-  where (Obs.effective.value during "Measurement Period")
+  // where (Obs.value during "Measurement Period" or Obs.value before (end of "Measurement Period" + 30 days))
+  // where (Obs.effective before end of "Measurement Period" and Obs.value after start of "Measurement Period")
+  where (Obs.effective before end of "Measurement Period")
+  sort by date from (effective as FHIR.dateTime) desc
 
 
 define "Any Return Visit During Period": 
   exists "Return Visits During Period"
 
+define "Most Recent Return Visit During Period":
+  First("Return Visits During Period")
 
-define "Last Return Visit During Period": 
-  Last("Return Visits During Period")
+define "Return Visit Date":
+  "Most Recent Return Visit During Period".value.value
 
+// Get last visit during measure period, "return visit date" + 30 days > end of the period
+// Does the most recent "return visit date" need to be within the period as long as the value is after it?
+define "Return Visit within 30 days of Period":
+  ("Most Recent Return Visit During Period".value as FHIR.dateTime) + 30 days after end of "Measurement Period"
 
 
 // "CURRENT DRUGS USED" are prescriptions
 // effectivedatetime captures when those drugs started
 // the other datetime fields are not used
+// checks on being started on ART, this is not 'picking up drugs'
 
+define "Has started ART":
+  exists( ["Observation": Cx."CURRENT DRUGS USED"] )
 
+/*
 define "Drugs Visit During Period":
   ["Observation": Cx."CURRENT DRUGS USED"] Obs
     where (Obs.effective during "Measurement Period")
-    // Todo:
-    // this is needed but will not evaluate if system is missing
-    // and singleton from {Obs.value.coding in Cx."CIELHIVMedications"}
 
 
 define "Drugs Visit During Period Boolean": exists "Drugs Visit During Period"
@@ -140,17 +119,14 @@ define "Drugs Visit During Period Boolean": exists "Drugs Visit During Period"
 // Observations for drugs where issuedDateTime is during measurement period
 define "Drugs During Period":
   ["Observation": Cx."CURRENT DRUGS USED"] Obs
-    where (Obs.effective during "Measurement Period")
-    // this is needed but will not evaluate if system is missing
-    // and singleton from {Obs.value.coding in Cx."CIELHIVMedications"}
+    where (Obs.effective before end of "Measurement Period")
 
 
-// Sort and take get the last one
 define "Drugs Effective":
   Last("Drugs During Period" Obs
     sort by effective.value
   )
-
+*/
     
 
 /*
@@ -164,8 +140,6 @@ The drugs observation tells when a patient was first started on drugs.
 'current drugs' concept captures regimen changes
 more of a history of regimen of original and most current - there may be original and current regimen
 bundle includes original regimen
-
-Fix coming: The code in KenyaEMR doesn't include a system identifier. CQL requires this. 
 */
 
 // Patient who made a clinic visit in the past and were given medicine to last the reporting period and beyond
@@ -186,6 +160,7 @@ define DrugInterval: Interval[DrugStart, DrugStop]
 // current drugs used does not capture dispense
 // appointment captures when drugs scrip ends
 
+/*
 define "DrugStart":
   Last(["Observation": Cx."CURRENT DRUGS USED"] Obs
     where (Obs.effective during "Measurement Period" or Obs.effective before "Measurement Period")
@@ -206,48 +181,67 @@ define "DrugInterval": Interval[DrugStart, DrugStop]
 
 
 // Patient who made a clinic visit in the past and were given medicine to last the reporting period and beyond
-// keyword is 'and beyond'. 
-// Todo: How long after measurement period does the return date count?
-
+// keyword is 'and beyond' = 30 days
 
 define "End Measurement Period": end of "Measurement Period"
-
 
 define "Interval Hack": Interval["End Measurement Period", "End Measurement Period"]
 
 
 // Interval must overlap with END of the period
 define "Last Return": "DrugInterval" overlaps ("Interval Hack")
-
+*/
 
 define "Measure Population": 
+  "Return Visit within 30 days of Period" and "Has started ART"
+  /*
   "Last Return" is true
   or "Drugs Visit During Period Boolean" is true
   or "Any Return Visit During Period" is true
+  */
+
+
+// Measure Population Exclusion
+// Deceased and those who interrupted treatment for any reason, etc, etc.
+
+
+/*
+Deceased patients are not in numerator.
+In FHIR, deceased[x] is a choice type, of either boolean or datetime.
+It also has a cardinality of 0..1. so deceasedBoolean and deceasedDateTime cannot coexist.
+There can only be one deceased[x] element.
+If true is used, there's no way to know from that field when the patient died. DateTime is better for accuracy.
+*/
+
+
+// This expression allows deceasedBoolean which has no datetime.
+define "Deceased Boolean":
+  Patient.deceased is not null 
+  and ((Patient.deceased as FHIR.boolean) is true or (Patient.deceased as FHIR.dateTime) on or before end of "Measurement Period")
+
+
+// This expression requires patients to have datetime on Patient.deceased (more accurate).
+define "Deceased DateTime Only":
+  Patient.deceased is not null 
+  and Patient.deceased on or before end of "Measurement Period"
 
 
 
-// Todo:
-// 30 days (one month) have not passed since the last missed appointment. (Q: How is this coded?)
-
-
-// Measure Population Exclusion: Exclude those who interrupted treatment for any reason, etc, etc.
-// Exclude those who interrupted treatment for any reason, etc, etc. "Measure Population Exclusion"
-
-
-// Todo: double check
-// "effectiveDateTime": "2023-05-31T11:30:14+03:00",
+// Todo: double check: "effectiveDateTime": "2023-05-31T11:30:14+03:00",
 define "Discontinuation":
   ["Observation": Cx."Reason for discontinuation of program"] Obs
-  where (Obs.effective during "Measurement Period" or Obs.effective before "Measurement Period")
+  where Obs.effective before end of "Measurement Period" and Obs.effective after "Most Recent Return Visit During Period".effective
+  //where (Obs.effective during "Measurement Period" or Obs.effective before "Measurement Period")
 
 
 define "Discontinuation Boolean": exists "Discontinuation"
 
 
 // Todo
-define "Measure Population Exclusion": "Discontinuation Boolean"
-
+define "Measure Population Exclusion": 
+  "Discontinuation Boolean"
+  or "Deceased Boolean"
+  //or ("Deceased Boolean" is true or "Deceased DateTime Only" is true)
 
 
 
@@ -256,6 +250,7 @@ define "Measure Population Exclusion": "Discontinuation Boolean"
 
 // should work without #location
 // how to clean it up with identifier[].extension[]
+// todo: debugging needed on location
 define "OpenMRS Location":
   [Patient] P
     // this url is in the ig, but is not correct: 'http://fhir.openmrs.org/core/StructureDefinition/omrs-patient-identifier-location'}
@@ -266,10 +261,8 @@ define "OpenMRS Location":
     return singleton from {P.identifier.extension[0].value.reference.value}
 
 
-// todo: debugging needed on location
-
 define "Stratification": 
-  Stratifiers."Age Group/Sex/Location TXCURR"
+  Stratifiers."Age Group/Sex"
 
 
-// define "Stratifiers": "Stratification"
+// define "Stratifier": "Stratification"

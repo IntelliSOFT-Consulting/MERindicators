@@ -51,8 +51,8 @@ InstanceOf: Measure
 Title: "KEMRTXCURR"
 Description: "KEMRTXCURR"
 * id = "KEMRTXCURR"
-* identifier[0].system = "https://path-global-health.github.io/MERindicators/Measure/"
-* identifier[1].system = "https://datim.org/factsinfo/mechanism"
+// * identifier[0].system = "https://path-global-health.github.io/MERindicators/Measure/"
+// * identifier[1].system = "https://datim.org/factsinfo/mechanism"
 // * identifier[1].value = "12345"
 * version = "0.1.0"
 * status = #draft
@@ -82,13 +82,13 @@ Description: "KEMRTXCURR"
     * code = $measure-population#measure-population-exclusion
     * criteria.language = #text/cql
     * criteria.expression = "Measure Population Exclusion"
-  * population[+]
-    * extension[http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-criteriaReference].valueString = "measure-observation"
-    * extension[http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-aggregateMethod].valueCode = #count
-    * description = "Measure Observation"
-    * code = $measure-population#measure-observation
-    * criteria.language = #text/cql
-    * criteria.expression = "Measure Observation"
+  // * population[+]
+  //   * extension[http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-criteriaReference].valueString = "measure-observation"
+  //   * extension[http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-aggregateMethod].valueCode = #count
+  //   * description = "Measure Observation"
+  //   * code = $measure-population#measure-observation
+  //   * criteria.language = #text/cql
+  //   * criteria.expression = "Measure Observation"
   * stratifier[+]
     * criteria.language = #text/cql
     * criteria.expression = "Stratification"
@@ -97,3 +97,5 @@ Description: "KEMRTXCURR"
 
 // Not using for now, will try evaluate library:
 // https://build.fhir.org/ig/HL7/cqf-recommendations/OperationDefinition-cpg-library-evaluate.html
+
+

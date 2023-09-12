@@ -68,7 +68,7 @@ jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 
 
 dependencies:
-  openmrs.fhir.core: current
+  openmrs.fhir.core: dev
   hl7.fhir.uv.cpg: 1.0.0
   hl7.fhir.us.cqfmeasures: 
     uri: http://hl7.org/fhir/us/cqfmeasures/ImplementationGuide/hl7.fhir.us.cqfmeasures
@@ -201,10 +201,8 @@ parameters:
     # - input/examples-src/output
     # for cqf tooling
     - input/resources/device
+    - input/vocabulary/valueset/cqf_valuesets
   path-binary: input/cql
-  path-pages:
-    - input/pagecontent
-    - fsh-generated/includes
   active-tables: 'false'
   apply-contact: 'true'
   apply-jurisdiction: 'true'
@@ -226,3 +224,4 @@ FSHOnly: false
 # When set to true, the "short" and "definition" field on the root element of an Extension will
 # be set to the "Title" and "Description" of that Extension. Default is true.
 #applyExtensionMetadataToRoot: false
+
