@@ -25,15 +25,15 @@ function Loader() {
     done
 }
 
-# Check if the output directory exists
-if [ ! -d "${output}" ]; then
-    echo "Build output directory does not exist. Running build scripts first..."
-    ./_updatePublisher.sh
-    ./_updateCQFTooling.sh
-    ./_runcqf.sh
-else
-    echo "Build output directory already exists."
-fi
+# # Check if the output directory exists
+# if [ ! -d "${output}" ]; then
+#     echo "Build output directory does not exist. Running build scripts first..."
+#     ./_updatePublisher.sh
+#     ./_updateCQFTooling.sh
+#     ./_runcqf.sh
+# else
+#     echo "Build output directory already exists."
+# fi
 
 Loader Device
 Loader CodeSystem
