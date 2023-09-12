@@ -8,27 +8,13 @@ NC='\033[0m' # No Color
 # docker run -d -p 8080:8080 alphora/cqf-ruler:latest
 
 ## fyi: hapi fhir hosted demo doesn't support measure eval
-# export FHIR="https://blaze.life.uni-leipzig.de/fhir"
-# export FHIR="https://cloud.alphora.com/sandbox/r4/cqm/fhir"
 export FHIR="http://localhost:8080/fhir"
-# export FHIR="http://ryzen.local:8080/fhir"
 
 export HEADER="Content-Type: application/fhir+json"
 export output="../../output"
 export OUTPUT="@../../output"
 export SCRIPTS="../test/scripts"
 
-# function confirmation {
-#     printf '\nDo you wish to continue (y/n)? '
-#     read answer
-
-#     if [ "$answer" != "${answer#[Yy]}" ] ;then 
-#         echo ""
-#     else
-#         echo ""
-#         exit
-#     fi
-# }
 
 function Loader() {
     cd ${output}
@@ -43,7 +29,7 @@ function Loader() {
 }
 
 # on some servers this isn't needed, but it is included here
-curl -X PUT -H "$HEADER" --data @Library-FHIR-ModelInfo.json $FHIR/Library/FHIR-ModelInfo | jq .
+# curl -X PUT -H "$HEADER" --data @Library-FHIR-ModelInfo.json $FHIR/Library/FHIR-ModelInfo | jq .
 
 Loader Device
 Loader CodeSystem

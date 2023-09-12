@@ -1,0 +1,58 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "EnrollmentMethods",
+  "id": "EnrollmentMethods",
+  "title": "Enrollment Methods for HIV program",
+  "description": "1",
+  "url": "https://path-global-health.github.io/MERindicators/CodeSystem/EnrollmentMethods",
+  "concept": [
+    {
+      "code": "159938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "HBTC"
+    },
+    {
+      "code": "160539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "VCT Site"
+    },
+    {
+      "code": "159937AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "MCH"
+    },
+    {
+      "code": "160536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "IPD-Adult"
+    },
+    {
+      "code": "160537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "IPD-Child"
+    },
+    {
+      "code": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "TB Clinic"
+    },
+    {
+      "code": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "OPD"
+    },
+    {
+      "code": "162050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "CCC"
+    },
+    {
+      "code": "160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "Self Test"
+    },
+    {
+      "code": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "display": "Other(eg STI)"
+    }
+  ],
+  "language": "en",
+  "meta": {
+    "lastUpdated": "2023-07-20T15:56:38.013277Z"
+  },
+  "version": "1",
+  "count": 10
+}
