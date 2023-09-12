@@ -13,13 +13,14 @@ export FHIR="http://localhost:8088/fhir"
 export HEADER="Content-Type: application/fhir+json"
 export BUNDLES_DIR="./test/scripts/bundles"
 export output="$(pwd)/output"
-
+        
+echo "Attempting to connect to Test FHIR Server, retrying in 5 seconds..."
 for _ in {1..1000}; do
-    if curl -sSf http://localhost:8088; then
+    if curl -sSf http://localhost:8088 > /dev/null 2>&1; then
         echo "FHIR Server Connection successful."
         break
     else
-        echo "Failed to connect, retrying in 5 seconds..."
+        echo "Attempting to connect to Test FHIR Server, retrying in 5 seconds..."
         sleep 5 # Wait for 5 seconds before retrying
     fi
 done
@@ -28,7 +29,8 @@ function Loader() {
     for FILE in "$output/"$1*.json; do
         # printf "${FILE}"
         local EYED=$(cat ${FILE} | jq -r .id)
-        curl -s -X PUT -H "$HEADER" --data @${FILE} $FHIR/$1/${EYED} | jq .
+        curl -s -X PUT -H "$HEADER" --data @${FILE} $FHIR/$1/${EYED} | jq . > /dev/null 2>&1
+        # echo "Uploaded $FILE to test FHIR server"
 
     done
 }
@@ -56,35 +58,21 @@ for json_file in "$BUNDLES_DIR"/*.json; do
     if [ -f "$json_file" ]; then
         echo "Processing $json_file"
         # Perform the POST request using curl
-        # curl -X POST -H "Content-Type: application/json" --data-binary @"$json_file" -k "$FHIR" >/dev/null 2>&1
-        curl -X POST -H "Content-Type: application/json" --data-binary @"$json_file" -k "$FHIR"
+        curl -X POST -H "Content-Type: application/json" --data-binary @"$json_file" -k "$FHIR" >/dev/null 2>&1
+        # curl -X POST -H "Content-Type: application/json" --data-binary @"$json_file" -k "$FHIR"
         echo "Posted data from $json_file"
     fi
 done
 
-DAKTXCURR=$(curl $FHIR'/Measure/DAKTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-08-31')
-KEMRTXCURR=$(curl $FHIR'/Measure/KEMRTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-08-31')
+# DAKTXCURR=$(curl $FHIR'/Measure/DAKTXCURR/$evaluate-measure?periodStart=2000-01-01&periodEnd=2023-08-31')
+KEMRTXCURR=$(curl $FHIR'/Measure/KEMRTXCURR/$evaluate-measure?periodStart=2020-01-01&periodEnd=2023-08-31')
 
-echo "$DAKTXCURR" | jq .
-echo "$KEMRTXCURR" | jq .
+# echo "$DAKTXCURR" | jq .
+value=$(jq -r '.group[0].population[1].count' <<< "$KEMRTXCURR")
 
-# # Extract relevant values from the curl output
-# numerator=$(echo "$curl_output" | jq -r '.numerator')
-# denominator=$(echo "$curl_output" | jq -r '.denominator')
-# TX_CURR=$(echo "$curl_output" | jq -r '.TX_CURR')
-
-# # Create a JSON object
-# json_output=$(cat <<EOF
-# {
-#   "numerator": $numerator,
-#   "denominator": $denominator,
-#   "TX_CURR": "$TX_CURR"
-# }
-# EOF
-# )
-
-# Save the JSON object to a file
-# echo "$json_output"
-# echo "$json_output" > output.json
-
-# cat measurereports/MERTXCURR.json | jq -r '.group[] | .stratifier[] | .stratum | (. | map(leaf_paths) | unique) as $cols | map (. as $row | ($cols | map(. as $col | $row | getpath($col)))) as $rows | ([($cols | map(. | tostring))] + $rows) | map(@csv) | .[]' > measurereports/MERTXCURR.csv
+if [ "$value" != "4" ]; then
+    echo "Invalid TX_CURR value.
+            Expected TX_CURR = 4
+            Current TX_CURR = $value"
+    exit 1
+fi
