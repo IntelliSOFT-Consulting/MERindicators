@@ -70,13 +70,13 @@ KEMRTXCURR=$(curl $FHIR'/Measure/KEMRTXCURR/$evaluate-measure?periodStart=2020-0
 value=$(jq -r '.group[0].population[1].count' <<< "$KEMRTXCURR")
 
 if [ "$value" != "4" ]; then
-    echo "Inaacurate TX_CURR value.
-            Expected TX_CURR = 4
-            Current TX_CURR = $value"
+    echo "Inaccurate TX_CURR value.
+            - Expected TX_CURR = 4
+            - Current TX_CURR = $value"
     exit 1
 else
     echo "TX_CURR value is accurate.
-            Expected TX_CURR = 4
-            Current TX_CURR = $value"
+            - Expected TX_CURR = 4
+            - Current TX_CURR = $value"
     exit 0
 fi
